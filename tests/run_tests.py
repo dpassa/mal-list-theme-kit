@@ -27,6 +27,8 @@ for path in themes:
     check(not bad, f"{os.path.basename(path)} lints clean" + (f": {[(f.rule, f.line) for f in bad]}" if bad else ""))
     check("@import" in css and css.index("@import") < css.index(":root {"),
           f"{os.path.basename(path)} has @import before :root")
+    check("github.com/dpassa/mal-list-theme-kit" in css.strip().splitlines()[-2],
+          f"{os.path.basename(path)} ends with the credit comment")
 
 with open(os.path.join(ROOT, "tests", "fixtures", "bad.css"), encoding="utf-8") as fh:
     rules = {f.rule for f in lint_css.lint("bad.css", fh.read())}

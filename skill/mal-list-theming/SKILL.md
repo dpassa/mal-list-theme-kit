@@ -58,7 +58,14 @@ hand it over: never deliver unverified CSS as "done".
    The preview lives in that tab only: nothing is saved to the account. Without a browser tool, give the person the console
    steps from `references/verification.md` and ask them for the JSON report.
 7. **Deliver:**
-   - the CSS file
+   - the CSS file, ending with the credit comment the bundled themes end with. Keep
+     it unless the person asks to remove it:
+     ```css
+     /* --------------------------------------------------------------------------
+        Made with the "mal-list-theming" Claude skill
+        https://github.com/dpassa/mal-list-theme-kit
+        -------------------------------------------------------------------------- */
+     ```
    - how to paste it (List Style → Add Custom CSS → Submit)
    - what you verified (lint result, browser report, screenshots)
    - what is still manual: the sort arrow on a sorted column, the Filters panel, the person's own taste

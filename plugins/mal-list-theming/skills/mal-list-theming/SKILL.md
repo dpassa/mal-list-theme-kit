@@ -32,7 +32,7 @@ hand it over: never deliver unverified CSS as "done".
 
 1. **Understand the request.** Ask about the mood or palette, light or dark, the font
    (Google Fonts are fine: `@import` works in MAL's field), anime or manga list, and
-   the list URL if they want a live preview. Never ask for their MAL password and
+   the list URL if they want a live preview. Never ask for their MAL login details and
    never sign in for them.
 2. **Pick the closest theme** from `themes/` and copy it to a new file named after the theme.
 3. **Edit tokens** in `:root` (`--mal-font`, surfaces, bands, link and muted colors).

@@ -59,7 +59,7 @@ ICON_SELECTOR = re.compile(
 # Classes/ids known to exist on the modern list. Anything else is reported as
 # info: it may be fine (MAL adds markup over time) but often it is a typo or a
 # selector copied from another site.
-KNOWN_TOKENS = set("""
+KNOWN_CLASS_NAMES = set("""
 ownlist anime manga header header-title header-menu header-info btn-menu list-menu username
 cover-block image-container btn-list-setting hide fa-camera icon-plus-circle
 list-container list-block list-unit list-status-title text stats list-stats loading-space
@@ -319,11 +319,11 @@ def lint(path: str, css: str) -> list[Finding]:
     seen = set()
     for r in rules:
         for s in r.selectors:
-            for tok in re.findall(r"[.#]([A-Za-z_][\w-]*)", re.sub(r"\[[^\]]*\]", "", s)):
-                if tok not in KNOWN_TOKENS and tok not in seen:
-                    seen.add(tok)
+            for name in re.findall(r"[.#]([A-Za-z_][\w-]*)", re.sub(r"\[[^\]]*\]", "", s)):
+                if name not in KNOWN_CLASS_NAMES and name not in seen:
+                    seen.add(name)
                     add(r.line, "MAL-011", "info",
-                        f"'{tok}' is not in the documented MAL list markup: check it exists on the page.", s)
+                        f"'{name}' is not in the documented MAL list markup: check it exists on the page.", s)
 
     # MAL-016: non-ASCII characters (MAL's Custom CSS field mangles them: "·" -> "Â·")
     for n, line in enumerate(css.splitlines(), 1):

@@ -60,7 +60,7 @@ Tips:
 - **Taste.** Whether the palette is pretty is the person's call: show screenshots.
 - **The sort arrow** only exists on the sorted column. Sorting changes the page URL.
   Ask the person to click a column header, or check it on a page already sorted.
-- **Saving.** Pasting into *Add Custom CSS* and pressing Submit is always done by the person.
+- **Saving.** Pasting into *Add Custom CSS* and pressing Save is always done by the person.
 - **The Filters panel and the "More" panel** are opened by MAL scripts. Open them by clicking, then look.
 - **Future MAL changes.** New markup makes rules go dead silently. Re-run the check
   after MAL updates, and treat linter MAL-011 infos as hints.

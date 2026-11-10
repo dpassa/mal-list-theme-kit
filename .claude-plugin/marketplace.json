@@ -1,0 +1,18 @@
+{
+  "name": "mal-list-theme-kit",
+  "description": "Claude plugin for theming MyAnimeList lists safely.",
+  "owner": {
+    "name": "dpassa",
+    "url": "https://github.com/dpassa"
+  },
+  "plugins": [
+    {
+      "name": "mal-list-theming",
+      "source": "./plugins/mal-list-theming",
+      "description": "Design, write and verify custom CSS themes for your MyAnimeList list.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["myanimelist", "css", "theme"]
+    }
+  ]
+}

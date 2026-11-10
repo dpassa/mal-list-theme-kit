@@ -5,7 +5,7 @@ import os
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(ROOT, "skill", "mal-list-theming", "scripts"))
+sys.path.insert(0, os.path.join(ROOT, "plugins", "mal-list-theming", "skills", "mal-list-theming", "scripts"))
 import lint_css  # noqa: E402
 
 failed = 0
@@ -17,7 +17,7 @@ def check(cond, msg):
     failed += 0 if cond else 1
 
 
-themes = sorted(glob.glob(os.path.join(ROOT, "skill", "mal-list-theming", "themes", "*.css")))
+themes = sorted(glob.glob(os.path.join(ROOT, "plugins", "mal-list-theming", "skills", "mal-list-theming", "themes", "*.css")))
 check(len(themes) >= 4, f"{len(themes)} bundled themes found")
 for path in themes:
     with open(path, encoding="utf-8") as fh:

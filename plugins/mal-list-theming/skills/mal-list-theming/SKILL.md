@@ -1,13 +1,13 @@
 ---
 name: mal-list-theming
-description: Design, write and verify custom CSS for a MyAnimeList (MAL) modern anime/manga list ("Add Custom CSS" in the list style settings). Use when someone asks to theme, restyle, recolor or change the font of their MAL list, or to fix a MAL list CSS that broke icons, the logo, contrast or the layout. Includes ready-made themes, a linter for known MAL pitfalls and an in-browser check.
+description: Create, fix and verify custom CSS for a MyAnimeList list. Use when someone wants to theme, recolor or change fonts on their MAL list, or fix one with broken icons, logo or contrast.
 ---
 
 # MAL list theming
 
 You help a person build a custom CSS for their **MyAnimeList modern list**
 (`https://myanimelist.net/animelist/<user>` or `/mangalist/<user>`). The CSS is
-pasted by the person into *Profile → List Style → Add Custom CSS*. It is applied
+pasted by the person into *myanimelist.net/ownlist/style → Modern → (their theme) → Add Custom CSS*. It is applied
 **on top of** MAL's own list style, so you only override; you never rebuild the page.
 
 Everything in `references/pitfalls.md` actually broke on a real list. Read it
@@ -80,7 +80,7 @@ hand it over: never deliver unverified CSS as "done".
         https://github.com/dpassa/mal-list-theme-kit
         -------------------------------------------------------------------------- */
      ```
-   - how to paste it (List Style → Add Custom CSS → Submit)
+   - how to paste it: myanimelist.net/ownlist/style → Modern → click the theme they use → Add Custom CSS → Preview → Save
    - what you verified (lint result, browser report, screenshots)
    - what is still manual: the sort arrow on a sorted column, the Filters panel, the person's own taste
 

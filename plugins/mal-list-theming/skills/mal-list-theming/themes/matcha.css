@@ -1,38 +1,38 @@
 /* ==========================================================================
-   MyAnimeList list theme: "Momiji" (紅葉)
-   Autumn maple leaves: warm paper, vermilion torii bands, M PLUS Rounded 1c.
+   MyAnimeList list theme: "Matcha" (抹茶)
+   Green tea and washi paper: cream rows, deep tea-green bands, Zen Maru Gothic.
 
-   How to use: Profile > Edit List Style (modern list) > "Add Custom CSS".
-   Paste the whole file. Works on top of any modern list base style.
+   How to use: myanimelist.net/ownlist/style > Modern > click your theme >
+   "Add Custom CSS": paste the whole file, Preview, Save.
    Change the values in :root only; every rule below reads them.
    ========================================================================== */
 
 /* @import must be the very first rule, or the browser ignores it. */
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
 
 :root {
-    --mal-font: 'M PLUS Rounded 1c', 'Segoe UI', Roboto, Verdana, Arial, sans-serif;
+    --mal-font: 'Zen Maru Gothic', 'Segoe UI', Roboto, Verdana, Arial, sans-serif;
 
-    --mal-page-top: #fbf4ea;
-    --mal-page-bottom: #f6e4cf;
-    --mal-text: #4a2418;
-    --mal-surface: #fffaf3;
-    --mal-surface-alt: #fcecd9;
-    --mal-hover: #f8d6b5;
-    --mal-border: #e6a77c;
-    --mal-rule: #f0d2b6;
+    --mal-page-top: #f6f3e7;
+    --mal-page-bottom: #ebe5cf;
+    --mal-text: #2f3a24;
+    --mal-surface: #fbfaf3;
+    --mal-surface-alt: #eef0dc;
+    --mal-hover: #dde5c0;
+    --mal-border: #b9c48e;
+    --mal-rule: #dfe3c4;
 
-    --mal-band-1: #c8402c;
-    --mal-band-2: #8e2a1c;
-    --mal-band-3: #5e1a10;
+    --mal-band-1: #52722a;
+    --mal-band-2: #3f5a24;
+    --mal-band-3: #2a3d18;
     --mal-on-band: #ffffff;
-    --mal-on-band-soft: #fff4ea;
+    --mal-on-band-soft: #f6f8ec;
 
-    --mal-accent: #b5361f;
-    --mal-link: #8e2a1c;
-    --mal-link-hover: #9e2f1c;
-    --mal-strong: #5e1a10;
-    --mal-muted: #8a5a40;
+    --mal-accent: #4f6f22;
+    --mal-link: #3f5a24;
+    --mal-link-hover: #44621f;
+    --mal-strong: #2a3d18;
+    --mal-muted: #5f6d45;
 }
 
 /* --- Font ---------------------------------------------------------------
@@ -290,20 +290,24 @@ html {
 }
 
 /* --- Japanese touches ---------------------------------------------------- */
-/* Gold underline on the active tab, like the gilded edge of a torii. */
-.status-menu-container .status-menu .status-button:after {
-    background-color: #d99a2b !important;
+/* Washi paper: two faint fibre gradients over the page color. */
+body {
+    background:
+        repeating-linear-gradient(115deg, rgba(120, 110, 70, 0.035) 0 2px, transparent 2px 9px),
+        repeating-linear-gradient(25deg, rgba(120, 110, 70, 0.03) 0 1px, transparent 1px 13px),
+        linear-gradient(180deg, var(--mal-page-top), var(--mal-page-bottom)) !important;
 }
 
-/* Thin gold line between the section band and the column headers. */
-.list-unit .list-status-title {
-    box-shadow: inset 0 -2px 0 #d99a2b !important;
-}
-
+/* Small kanji mark after the section title ("ALL ANIME 抹茶"). It is plain
+   text in the theme font, not an icon, so changing its font is safe. */
 .list-unit .list-status-title .text::after {
-    content: "　紅葉";
+    content: "　抹茶";
     font-size: 0.6em;
-    opacity: 0.75;
+    opacity: 0.7;
+}
+
+.list-container {
+    border-radius: 0 0 10px 10px !important;
 }
 
 /* --- Credit (visible) -----------------------------------------------------

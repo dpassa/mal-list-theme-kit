@@ -1,38 +1,38 @@
 /* ==========================================================================
-   MyAnimeList list theme: "Aizome" (藍染)
-   Indigo dyeing, dark theme: deep indigo surfaces, seigaiha wave pattern, warm off-white text, Zen Kaku Gothic New.
+   MyAnimeList list theme: "Cherry Blossom" (sakura)
+   Soft pink rows, magenta/marsala bands, Nunito.
 
-   How to use: Profile > Edit List Style (modern list) > "Add Custom CSS".
-   Paste the whole file. Works on top of any modern list base style.
+   How to use: myanimelist.net/ownlist/style > Modern > click your theme >
+   "Add Custom CSS": paste the whole file, Preview, Save.
    Change the values in :root only; every rule below reads them.
    ========================================================================== */
 
 /* @import must be the very first rule, or the browser ignores it. */
-@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
 
 :root {
-    --mal-font: 'Zen Kaku Gothic New', 'Segoe UI', Roboto, Verdana, Arial, sans-serif;
+    --mal-font: 'Nunito', 'Segoe UI', Roboto, Verdana, Arial, sans-serif;
 
-    --mal-page-top: #0e1529;
-    --mal-page-bottom: #0a0f1e;
-    --mal-text: #e6e1d3;
-    --mal-surface: #151e37;
-    --mal-surface-alt: #1a2542;
-    --mal-hover: #24325e;
-    --mal-border: #2c3b68;
-    --mal-rule: #24305a;
+    --mal-page-top: #fdf1f5;
+    --mal-page-bottom: #fbe4ec;
+    --mal-text: #5a1f2f;
+    --mal-surface: #fff5f8;       /* list container, odd rows */
+    --mal-surface-alt: #fde6ec;   /* even rows, panels */
+    --mal-hover: #f8c9d8;
+    --mal-border: #f3aac2;
+    --mal-rule: #f3c6d3;          /* row separators */
 
-    --mal-band-1: #34508f;
-    --mal-band-2: #1f2d57;
-    --mal-band-3: #121b38;
+    --mal-band-1: #c2185b;        /* bands and buttons (white text on top) */
+    --mal-band-2: #8b3a4a;
+    --mal-band-3: #5a1f2f;
     --mal-on-band: #ffffff;
-    --mal-on-band-soft: #d6def6;
+    --mal-on-band-soft: #fbe4ec;
 
-    --mal-accent: #a9bdf0;
-    --mal-link: #c9d5f5;
-    --mal-link-hover: #ffffff;
-    --mal-strong: #f2e7c9;
-    --mal-muted: #8e9cc4;
+    --mal-accent: #c2185b;        /* active tab, on the surface */
+    --mal-link: #8b3a4a;
+    --mal-link-hover: #a3124c;
+    --mal-strong: #5a1f2f;        /* score, panel text */
+    --mal-muted: #8c5266;         /* inactive tabs: keep >= 4.5:1 on --mal-surface */
 }
 
 /* --- Font ---------------------------------------------------------------
@@ -287,34 +287,6 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--mal-band-2);
-}
-
-/* --- Japanese touches ---------------------------------------------------- */
-/* Seigaiha (青海波) waves: concentric arcs drawn with radial gradients. */
-body {
-    background-color: var(--mal-page-top) !important;
-    background-image:
-        radial-gradient(circle at 50% 100%, transparent 18%, rgba(169, 189, 240, 0.06) 19% 27%, transparent 28% 38%, rgba(169, 189, 240, 0.06) 39% 47%, transparent 48%),
-        radial-gradient(circle at 50% 100%, transparent 18%, rgba(169, 189, 240, 0.06) 19% 27%, transparent 28% 38%, rgba(169, 189, 240, 0.06) 39% 47%, transparent 48%) !important;
-    background-size: 56px 28px !important;
-    background-position: 0 0, 28px 14px !important;
-}
-
-/* Dark theme: MAL's base hardcodes light-theme colors in a few places. */
-.list-table .list-table-data a.edit-disabled {
-    color: var(--mal-muted) !important;
-}
-
-.list-table .list-table-data .tags textarea,
-.list-table .more-info {
-    background-color: var(--mal-surface) !important;
-    color: var(--mal-text) !important;
-}
-
-.list-unit .list-status-title .text::after {
-    content: "　藍";
-    font-size: 0.6em;
-    opacity: 0.7;
 }
 
 /* --- Credit (visible) -----------------------------------------------------

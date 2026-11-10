@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MyAnimeList list theme: "Matcha" (抹茶)
+   MyAnimeList list theme: "Matcha" (green tea)
    Green tea and washi paper: cream rows, deep tea-green bands, Zen Maru Gothic.
 
    How to use: myanimelist.net/ownlist/style > Modern > click your theme >
@@ -298,10 +298,10 @@ body {
         linear-gradient(180deg, var(--mal-page-top), var(--mal-page-bottom)) !important;
 }
 
-/* Small kanji mark after the section title ("ALL ANIME 抹茶"). It is plain
+/* Small kanji mark after the section title ("ALL ANIME" followed by the kanji for matcha). It is plain
    text in the theme font, not an icon, so changing its font is safe. */
 .list-unit .list-status-title .text::after {
-    content: "　抹茶";
+    content: "\003000\0062B9\008336";
     font-size: 0.6em;
     opacity: 0.7;
 }
@@ -314,7 +314,7 @@ body {
    A plain line of text under MAL's copyright. CSS cannot make it a link.
    Keep it unless you really want it gone: it helps others find the kit. */
 #footer-block::after {
-    content: "Theme made with the mal-list-theming Claude skill · github.com/dpassa/mal-list-theme-kit";
+    content: "Theme made with the mal-list-theming Claude skill \0000B7  github.com/dpassa/mal-list-theme-kit";
     display: block;
     padding-top: 6px;
     font-size: 11px;

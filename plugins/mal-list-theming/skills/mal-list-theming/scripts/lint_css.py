@@ -325,6 +325,17 @@ def lint(path: str, css: str) -> list[Finding]:
                     add(r.line, "MAL-011", "info",
                         f"'{tok}' is not in the documented MAL list markup: check it exists on the page.", s)
 
+    # MAL-016: non-ASCII characters (MAL's Custom CSS field mangles them: "·" -> "Â·")
+    for n, line in enumerate(css.splitlines(), 1):
+        bad = sorted({c for c in line if ord(c) > 127})
+        if bad:
+            in_comment_only = not re.sub(r"/\*.*?\*/", "", line).strip() or \
+                all(c not in re.sub(r"/\*.*?\*/", "", line) for c in bad)
+            esc = " ".join("%s -> \\%06X" % (c, ord(c)) for c in bad)
+            add(n, "MAL-016", "warning" if in_comment_only else "error",
+                "non-ASCII characters are corrupted when MAL saves the CSS (e.g. '·' shows as 'Â·'). "
+                "Inside strings use CSS escapes (" + esc + "); in comments use plain ASCII.")
+
     # MAL-015: visible credit for the kit (themes made with the skill keep it)
     if not any("mal-list-theme-kit" in d[1] for r in rules for s in r.selectors
                if "#footer-block" in s and "::after" in s for d in r.decls if d[0] == "content"):

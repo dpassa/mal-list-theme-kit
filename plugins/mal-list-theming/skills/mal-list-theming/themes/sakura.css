@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MyAnimeList list theme: "Cherry Blossom" (sakura)
+   MyAnimeList list theme: "Sakura" (cherry blossom)
    Soft pink rows, magenta/marsala bands, Nunito.
 
    How to use: myanimelist.net/ownlist/style > Modern > click your theme >
@@ -293,7 +293,7 @@ html {
    A plain line of text under MAL's copyright. CSS cannot make it a link.
    Keep it unless you really want it gone: it helps others find the kit. */
 #footer-block::after {
-    content: "Theme made with the mal-list-theming Claude skill · github.com/dpassa/mal-list-theme-kit";
+    content: "Theme made with the mal-list-theming Claude skill \0000B7  github.com/dpassa/mal-list-theme-kit";
     display: block;
     padding-top: 6px;
     font-size: 11px;

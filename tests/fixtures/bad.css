@@ -9,3 +9,4 @@ table.list-table thead th { color: red; }
 i.fa-solid { font-family: Nunito !important; }
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 .list-table .list-table-data .data a { color: #8b3a4a; }
+#footer-block::after { content: "made with · love"; }

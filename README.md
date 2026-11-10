@@ -17,7 +17,7 @@ gives Claude everything it needs to get it right the first time:
 
 | Theme | Look | Font |
 |---|---|---|
-| [Cherry Blossom](plugins/mal-list-theming/skills/mal-list-theming/themes/cherry-blossom.css) | Sakura: soft pink rows, magenta and marsala bands | Nunito |
+| [Sakura](plugins/mal-list-theming/skills/mal-list-theming/themes/sakura.css) | Cherry blossom: soft pink rows, magenta and marsala bands | Nunito |
 | [Matcha](plugins/mal-list-theming/skills/mal-list-theming/themes/matcha.css) | Green tea on washi paper, deep tea-green bands | Zen Maru Gothic |
 | [Momiji](plugins/mal-list-theming/skills/mal-list-theming/themes/momiji.css) | Autumn maple: warm paper, vermilion torii bands, gold accents | M PLUS Rounded 1c |
 | [Aizome](plugins/mal-list-theming/skills/mal-list-theming/themes/aizome.css) | Indigo dyeing, **dark**, seigaiha wave pattern | Zen Kaku Gothic New |

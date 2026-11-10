@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MyAnimeList list theme: "Momiji" (紅葉)
+   MyAnimeList list theme: "Momiji" (autumn leaves)
    Autumn maple leaves: warm paper, vermilion torii bands, M PLUS Rounded 1c.
 
    How to use: myanimelist.net/ownlist/style > Modern > click your theme >
@@ -301,7 +301,7 @@ html {
 }
 
 .list-unit .list-status-title .text::after {
-    content: "　紅葉";
+    content: "\003000\007D05\008449";
     font-size: 0.6em;
     opacity: 0.75;
 }
@@ -310,7 +310,7 @@ html {
    A plain line of text under MAL's copyright. CSS cannot make it a link.
    Keep it unless you really want it gone: it helps others find the kit. */
 #footer-block::after {
-    content: "Theme made with the mal-list-theming Claude skill · github.com/dpassa/mal-list-theme-kit";
+    content: "Theme made with the mal-list-theming Claude skill \0000B7  github.com/dpassa/mal-list-theme-kit";
     display: block;
     padding-top: 6px;
     font-size: 11px;

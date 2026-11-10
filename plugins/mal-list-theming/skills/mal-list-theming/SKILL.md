@@ -18,7 +18,7 @@ hand it over: never deliver unverified CSS as "done".
 
 - `themes/*.css`: four working themes. **Always start from one of them**: they
   already handle every pitfall. Change the `:root` tokens first, structure second.
-  - `cherry-blossom.css`: light pink, Nunito
+  - `sakura.css`: light pink (cherry blossom), Nunito
   - `matcha.css`: light green with a washi texture, Zen Maru Gothic
   - `momiji.css`: warm autumn with vermilion and gold, M PLUS Rounded 1c
   - `aizome.css`: **dark** indigo with seigaiha waves, Zen Kaku Gothic New (use it as the base for any dark theme)
@@ -64,10 +64,11 @@ hand it over: never deliver unverified CSS as "done".
        Pick a color that contrasts with the footer background.
      - **the credit comment**, which stays in the page source.
 
-     The linter warns (MAL-015) when the visible credit is missing.
+     The linter warns (MAL-015) when the visible credit is missing. CSS cannot make it a
+     link or selectable text: it is plain text, so keep the URL short and readable.
      ```css
      #footer-block::after {
-         content: "Theme made with the mal-list-theming Claude skill · github.com/dpassa/mal-list-theme-kit";
+         content: "Theme made with the mal-list-theming Claude skill \0000B7  github.com/dpassa/mal-list-theme-kit";
          display: block;
          padding-top: 6px;
          font-size: 11px;
@@ -106,3 +107,8 @@ hand it over: never deliver unverified CSS as "done".
 8. Non-sortable column headers (#, Premiered, Tags, Studios, Licensors) are plain text,
    not `.link`: set `color` on the `.header-title` cell itself.
 9. Don't copy MAL's own stylesheet into a theme you share: override only.
+10. **ASCII only.** MAL's Custom CSS field corrupts any non-ASCII character when it saves
+    (`·` becomes `Â·`, kanji become garbage). In `content` strings write CSS escapes
+    (`\0000B7` for a middle dot, `\0085CD` for 藍), and keep comments in plain ASCII.
+    A space right after an escape is swallowed as its terminator: write two spaces to keep one.
+    The linter flags it as MAL-016.

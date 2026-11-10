@@ -31,11 +31,12 @@ for path in themes:
           f"{os.path.basename(path)} ends with the credit comment")
     check("#footer-block::after" in css and "github.com/dpassa/mal-list-theme-kit\";" in css,
           f"{os.path.basename(path)} has the visible footer credit")
+    check(all(ord(c) < 128 for c in css), f"{os.path.basename(path)} is ASCII-only (MAL corrupts other characters)")
 
 with open(os.path.join(ROOT, "tests", "fixtures", "bad.css"), encoding="utf-8") as fh:
     rules = {f.rule for f in lint_css.lint("bad.css", fh.read())}
 for expected in ["MAL-001", "MAL-002", "MAL-003", "MAL-004", "MAL-005", "MAL-006",
-                 "MAL-007", "MAL-008", "MAL-009"]:
+                 "MAL-007", "MAL-008", "MAL-009", "MAL-016"]:
     check(expected in rules, f"bad.css triggers {expected}")
 
 # body font without the pinned selectors must warn (the bug that left the tabs in Verdana)

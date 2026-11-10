@@ -80,6 +80,13 @@ Themes made with this kit end with a `#footer-block::after` credit line (see SKI
 Remove it only when the person explicitly asks to. CSS `content` cannot be a link: it is
 plain text. Keep its color readable on the footer background.
 
+## MAL-016: non-ASCII characters get corrupted
+**Symptom:** a `·` in a `content:` string shows on the page as `Â·`; kanji turn into
+several Latin characters. MAL stores the Custom CSS with the wrong encoding.
+**Fix:** keep the whole file ASCII. In strings use CSS escapes: a backslash plus 6 hex digits,
+e.g. `content: "\003000\0062B9\008336"` for an ideographic space followed by 抹茶.
+Comments are not rendered, but write them in ASCII too.
+
 ## Not detectable by the linter (the browser check covers them)
 
 - **White header on a light page.** The logo and "Viewing … List" are white with no

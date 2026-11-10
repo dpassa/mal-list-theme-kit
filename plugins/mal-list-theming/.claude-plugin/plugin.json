@@ -1,8 +1,8 @@
 {
   "name": "mal-list-theming",
   "displayName": "MAL List Theming",
-  "version": "1.0.0",
-  "description": "Design, write and verify custom CSS themes for your MyAnimeList list, with ready-made Japanese-inspired themes, a linter for known MAL pitfalls and an in-browser check.",
+  "version": "1.1.0",
+  "description": "Design, write and verify custom CSS themes for your MyAnimeList list, with ready-made Japanese-inspired themes, a checklist of known MAL pitfalls and a guided in-page check.",
   "author": {
     "name": "dpassa",
     "url": "https://github.com/dpassa"

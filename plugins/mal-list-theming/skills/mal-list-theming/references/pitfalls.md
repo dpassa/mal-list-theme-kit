@@ -1,7 +1,7 @@
 # Known pitfalls
 
-Each entry has the linter rule id (`scripts/lint_css.py`) when it can be detected
-statically, what you see on the page, and the fix. All of them happened on a real list.
+Each entry has a rule id (`MAL-0xx`, the same ids as the review checklist in
+`verification.md`) when it can be spotted by reading the CSS, what you see on the page, and the fix. All of them happened on a real list.
 
 ## MAL-001: font on the universal selector breaks the icons
 **Symptom:** the search lens, the stats chart, the filter funnel and the sort arrows become empty squares ("tofu").
@@ -87,7 +87,7 @@ several Latin characters. MAL stores the Custom CSS with the wrong encoding.
 e.g. `content: "\003000\0062B9\008336"` for an ideographic space followed by 抹茶.
 Comments are not rendered, but write them in ASCII too.
 
-## Not detectable by the linter (the browser check covers them)
+## Not visible in the CSS alone (the in-page check covers them)
 
 - **White header on a light page.** The logo and "Viewing … List" are white with no
   background. Once the page is light they disappear. Give `.header` a dark band.

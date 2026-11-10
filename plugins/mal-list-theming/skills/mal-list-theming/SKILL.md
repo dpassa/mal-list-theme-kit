@@ -11,8 +11,11 @@ pasted by the person into *myanimelist.net/ownlist/style → Modern → (their t
 **on top of** MAL's own list style, so you only override; you never rebuild the page.
 
 Everything in `references/pitfalls.md` actually broke on a real list. Read it
-before writing any CSS. Verify every theme with the two checks below before you
-hand it over: never deliver unverified CSS as "done".
+before writing any CSS. Verify every theme with the review and the in-page check
+below before you hand it over: never deliver unverified CSS as "done".
+
+This skill ships no scripts. You do the checks yourself, by reading the CSS and,
+when you have a browser tool, by looking at the live page.
 
 ## Files
 
@@ -24,9 +27,7 @@ hand it over: never deliver unverified CSS as "done".
   - `aizome.css`: **dark** indigo with seigaiha waves, Zen Kaku Gothic New (use it as the base for any dark theme)
 - `references/selectors.md`: the MAL markup: which selector styles what.
 - `references/pitfalls.md`: known traps with wrong and right code (rule ids `MAL-0xx`).
-- `references/verification.md`: what the checks cover, how to run them, and what stays manual.
-- `scripts/lint_css.py`: static linter (Python 3, standard library only).
-- `scripts/browser_check.js`: in-page check (icons, fonts, contrast, logo, status colors, search).
+- `references/verification.md`: the review checklist, the in-page check, and what stays manual.
 
 ## Workflow
 
@@ -43,20 +44,16 @@ hand it over: never deliver unverified CSS as "done".
    - For a dark theme also override the base's hardcoded light colors. The extra block in `aizome.css` shows which.
 4. **Add decoration** only after the tokens work: patterns made with gradients, a
    `::after` text mark, radii, shadows. Follow the hard rules below.
-5. **Lint:** `python scripts/lint_css.py <theme>.css --strict`. Fix until there are
-   0 errors and 0 warnings. Info lines are for you to judge: an unknown selector
-   must be confirmed on the live page or removed.
+5. **Review** the whole file against the checklist in `references/verification.md`
+   (one line per pitfall `MAL-0xx`) and compute the contrast of every token pair
+   above. Fix until every line passes. A selector you cannot find in
+   `references/selectors.md` must be confirmed on the live page or removed.
 6. **Check in the browser** (see `references/verification.md`). If you have a browser
-   tool and the list URL:
-   1. Open the list.
-   2. Set `window.MAL_CHECK = { css: <file text>, expectFont: '<first font family>' }`.
-   3. Run `scripts/browser_check.js` and fix every `failures` entry.
-   4. Hover one icon of the left floating menu and read its tooltip's computed style.
-   5. Take a screenshot and judge the look.
-   6. Finally call `window.__malCheckRestore()`.
-
-   The preview lives in that tab only: nothing is saved to the account. Without a browser tool, give the person the console
-   steps from `references/verification.md` and ask them for the JSON report.
+   tool and the list URL, preview the CSS in that tab only, walk through the
+   in-page checklist (icons, search, fonts, contrast, logo, status colors, tooltip),
+   take a screenshot, then remove the preview. Nothing is saved to the account.
+   Without a browser tool, ask the person to press Preview on MAL's Customize page
+   and send you a screenshot, and tell them what to look at.
 7. **Deliver:**
    - the CSS file, ending with the two credits every bundled theme ends with. Keep
      them unless the person asks to remove them:
@@ -64,7 +61,7 @@ hand it over: never deliver unverified CSS as "done".
        Pick a color that contrasts with the footer background.
      - **the credit comment**, which stays in the page source.
 
-     The linter warns (MAL-015) when the visible credit is missing. CSS cannot make it a
+     A theme without the visible credit fails review line MAL-015. CSS cannot make it a
      link or selectable text: it is plain text, so keep the URL short and readable.
      ```css
      #footer-block::after {
@@ -82,7 +79,7 @@ hand it over: never deliver unverified CSS as "done".
         -------------------------------------------------------------------------- */
      ```
    - how to paste it: myanimelist.net/ownlist/style → Modern → click the theme they use → Add Custom CSS → Preview → Save
-   - what you verified (lint result, browser report, screenshots)
+   - what you verified (review checklist, in-page results, screenshots)
    - what is still manual: the sort arrow on a sorted column, the Filters panel, the person's own taste
 
    Screenshots can show the list owner's username in the tab title or header: crop or
@@ -111,4 +108,4 @@ hand it over: never deliver unverified CSS as "done".
     (`·` becomes `Â·`, kanji become garbage). In `content` strings write CSS escapes
     (`\0000B7` for a middle dot, `\0085CD` for 藍), and keep comments in plain ASCII.
     A space right after an escape is swallowed as its terminator: write two spaces to keep one.
-    The linter flags it as MAL-016.
+    Review line MAL-016.

@@ -39,7 +39,6 @@ To change the colors, edit only the `:root { --mal-... }` block at the top of th
 ### B. Claude Code (recommended: Claude does the work and the checks)
 
 You need [Claude Code](https://code.claude.com) installed.
-[Python 3](https://www.python.org/downloads/) is optional but recommended: Claude uses it to run the linter.
 
 1. In a terminal, add this repository as a plugin marketplace and install the plugin:
    ```bash
@@ -55,7 +54,7 @@ You need [Claude Code](https://code.claude.com) installed.
 3. Claude will:
    - ask about colors, font and light or dark
    - start from the closest theme
-   - lint the result
+   - review it against the known pitfalls
    - preview it on your list if it has a browser tool
 
    It then gives you the CSS file.
@@ -65,8 +64,8 @@ Update later with `claude plugin update mal-list-theming@mal-list-theme-kit`.
 
 **Live preview on your list:** Claude needs a browser tool, for example the
 Claude in Chrome extension. The preview happens in one tab
-only and is never saved to your account. Without a browser tool Claude still lints the CSS
-and tells you how to run the check yourself.
+only and is never saved to your account. Without a browser tool Claude still reviews the CSS
+and tells you what to look at when you press Preview on MAL.
 
 ### C. Claude apps (claude.ai, desktop)
 
@@ -95,9 +94,12 @@ To undo, empty the **Add Custom CSS** field and press **Save**, or use **Reset t
 
 ## Run the checks yourself
 
+The plugin itself ships no scripts. If you download this repository, the
+[`tools/`](tools) folder has two optional helpers you can run by hand.
+
 **Lint** (needs Python 3):
 ```bash
-python plugins/mal-list-theming/skills/mal-list-theming/scripts/lint_css.py my-theme.css --strict
+python tools/lint_css.py my-theme.css --strict
 ```
 It catches, among other things:
 - fonts forced on `*` or on icons, which turns icons into empty squares
@@ -111,7 +113,7 @@ It catches, among other things:
 **In-page check:**
 1. Open your list and press F12 → **Console**.
 2. Paste `window.MAL_CHECK = { css: \`...your CSS...\`, expectFont: 'Nunito' }`.
-3. Paste the content of [`browser_check.js`](plugins/mal-list-theming/skills/mal-list-theming/scripts/browser_check.js).
+3. Paste the content of [`browser_check.js`](tools/browser_check.js).
 
 It previews the CSS in that tab only and returns a pass/fail report. See
 [verification.md](plugins/mal-list-theming/skills/mal-list-theming/references/verification.md)
@@ -135,8 +137,8 @@ plugins/mal-list-theming/
 └─ skills/mal-list-theming/
    ├─ SKILL.md                            workflow and hard rules for Claude
    ├─ references/                         selector map, pitfalls, verification guide
-   ├─ scripts/                            lint_css.py, browser_check.js
    └─ themes/                             the four themes
+tools/                                    optional helpers, not part of the plugin: lint_css.py, browser_check.js
 tests/                                    linter self-tests: python tests/run_tests.py
 ```
 

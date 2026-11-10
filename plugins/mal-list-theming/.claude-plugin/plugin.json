@@ -9,6 +9,9 @@
   },
   "homepage": "https://github.com/dpassa/mal-list-theme-kit",
   "repository": "https://github.com/dpassa/mal-list-theme-kit",
+  "documentationUrl": "https://github.com/dpassa/mal-list-theme-kit#readme",
+  "supportUrl": "https://github.com/dpassa/mal-list-theme-kit/issues",
+  "privacyPolicyUrl": "https://github.com/dpassa/mal-list-theme-kit/blob/main/PRIVACY.md",
   "license": "MIT",
   "keywords": ["myanimelist", "mal", "anime", "css", "theme", "userstyle"]
 }

@@ -58,9 +58,23 @@ hand it over: never deliver unverified CSS as "done".
    The preview lives in that tab only: nothing is saved to the account. Without a browser tool, give the person the console
    steps from `references/verification.md` and ask them for the JSON report.
 7. **Deliver:**
-   - the CSS file, ending with the credit comment the bundled themes end with. Keep
-     it unless the person asks to remove it:
+   - the CSS file, ending with the two credits every bundled theme ends with. Keep
+     them unless the person asks to remove them:
+     - **the visible credit**: a line of text under MAL's copyright in the footer.
+       Pick a color that contrasts with the footer background.
+     - **the credit comment**, which stays in the page source.
+
+     The linter warns (MAL-015) when the visible credit is missing.
      ```css
+     #footer-block::after {
+         content: "Theme made with the mal-list-theming Claude skill · github.com/dpassa/mal-list-theme-kit";
+         display: block;
+         padding-top: 6px;
+         font-size: 11px;
+         color: var(--mal-on-band-soft);
+         text-align: center;
+     }
+
      /* --------------------------------------------------------------------------
         Made with the "mal-list-theming" Claude skill
         https://github.com/dpassa/mal-list-theme-kit

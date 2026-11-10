@@ -75,6 +75,11 @@ MAL is served over https: an `http://` font or image is blocked as mixed content
 ## MAL-014: `background` shorthand on column headers (info)
 It also removes MAL's 1px column separator image. Fine if intended.
 
+## MAL-015: visible credit missing (warning)
+Themes made with this kit end with a `#footer-block::after` credit line (see SKILL.md).
+Remove it only when the person explicitly asks to. CSS `content` cannot be a link: it is
+plain text. Keep its color readable on the footer background.
+
 ## Not detectable by the linter (the browser check covers them)
 
 - **White header on a light page.** The logo and "Viewing … List" are white with no

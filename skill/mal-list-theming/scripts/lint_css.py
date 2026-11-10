@@ -325,6 +325,13 @@ def lint(path: str, css: str) -> list[Finding]:
                     add(r.line, "MAL-011", "info",
                         f"'{tok}' is not in the documented MAL list markup: check it exists on the page.", s)
 
+    # MAL-015: visible credit for the kit (themes made with the skill keep it)
+    if not any("mal-list-theme-kit" in d[1] for r in rules for s in r.selectors
+               if "#footer-block" in s and "::after" in s for d in r.decls if d[0] == "content"):
+        add(1, "MAL-015", "warning",
+            "the visible credit is missing: end the theme with the #footer-block::after credit "
+            "from SKILL.md (remove it only if the person asked to).")
+
     # MAL-013: webkit scrollbar only
     if any("::-webkit-scrollbar" in s for r in rules for s in r.selectors) and \
             not any(d[0] == "scrollbar-color" for r in rules for d in r.decls):

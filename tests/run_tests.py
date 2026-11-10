@@ -29,6 +29,8 @@ for path in themes:
           f"{os.path.basename(path)} has @import before :root")
     check("github.com/dpassa/mal-list-theme-kit" in css.strip().splitlines()[-2],
           f"{os.path.basename(path)} ends with the credit comment")
+    check("#footer-block::after" in css and "github.com/dpassa/mal-list-theme-kit\";" in css,
+          f"{os.path.basename(path)} has the visible footer credit")
 
 with open(os.path.join(ROOT, "tests", "fixtures", "bad.css"), encoding="utf-8") as fh:
     rules = {f.rule for f in lint_css.lint("bad.css", fh.read())}

@@ -17,7 +17,7 @@ def check(cond, msg):
     failed += 0 if cond else 1
 
 
-themes = sorted(glob.glob(os.path.join(ROOT, "plugins", "mal-list-theming", "skills", "mal-list-theming", "themes", "*.css")))
+themes = sorted(glob.glob(os.path.join(ROOT, "themes", "*.css")))
 check(len(themes) >= 4, f"{len(themes)} bundled themes found")
 for path in themes:
     with open(path, encoding="utf-8") as fh:
@@ -32,6 +32,32 @@ for path in themes:
     check("#footer-block::after" in css and "github.com/dpassa/mal-list-theme-kit\";" in css,
           f"{os.path.basename(path)} has the visible footer credit")
     check(all(ord(c) < 128 for c in css), f"{os.path.basename(path)} is ASCII-only (MAL corrupts other characters)")
+
+import subprocess  # noqa: E402
+
+sync = subprocess.run([sys.executable, os.path.join(ROOT, "tools", "build_plugin_themes.py"), "--check"],
+                      capture_output=True, text=True)
+check(sync.returncode == 0, "plugin Markdown themes match themes/*.css" + (": " + sync.stdout.strip() if sync.returncode else ""))
+
+# The plugin directory only accepts Markdown, text, JSON, YAML and images from non-verified publishers.
+ALLOWED = {".md", ".txt", ".json", ".yaml", ".yml", ".png", ".jpg", ".jpeg", ".gif", ".webp", ".ico"}
+plugin_dir = os.path.join(ROOT, "plugins", "mal-list-theming")
+for dirpath, _, files in os.walk(plugin_dir):
+    for f in files:
+        full = os.path.join(dirpath, f)
+        rel = os.path.relpath(full, plugin_dir)
+        ext = os.path.splitext(f)[1].lower()
+        with open(full, "rb") as fh:
+            data = fh.read()
+        image = ext in {".png", ".jpg", ".jpeg", ".gif", ".webp", ".ico"}
+        ok = ext in ALLOWED
+        if not image:
+            ok = ok and not data.startswith(b"#!") and b"\x00" not in data
+            try:
+                data.decode("utf-8")
+            except UnicodeDecodeError:
+                ok = False
+        check(ok, f"plugin file allowed by the directory: {rel}")
 
 with open(os.path.join(ROOT, "tests", "fixtures", "bad.css"), encoding="utf-8") as fh:
     rules = {f.rule for f in lint_css.lint("bad.css", fh.read())}

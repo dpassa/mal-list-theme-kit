@@ -17,10 +17,10 @@ gives Claude everything it needs to get it right the first time:
 
 | Theme | Look | Font |
 |---|---|---|
-| [Sakura](plugins/mal-list-theming/skills/mal-list-theming/themes/sakura.css) | Cherry blossom: soft pink rows, magenta and marsala bands | Nunito |
-| [Matcha](plugins/mal-list-theming/skills/mal-list-theming/themes/matcha.css) | Green tea on washi paper, deep tea-green bands | Zen Maru Gothic |
-| [Momiji](plugins/mal-list-theming/skills/mal-list-theming/themes/momiji.css) | Autumn maple: warm paper, vermilion torii bands, gold accents | M PLUS Rounded 1c |
-| [Aizome](plugins/mal-list-theming/skills/mal-list-theming/themes/aizome.css) | Indigo dyeing, **dark**, seigaiha wave pattern | Zen Kaku Gothic New |
+| [Sakura](themes/sakura.css) | Cherry blossom: soft pink rows, magenta and marsala bands | Nunito |
+| [Matcha](themes/matcha.css) | Green tea on washi paper, deep tea-green bands | Zen Maru Gothic |
+| [Momiji](themes/momiji.css) | Autumn maple: warm paper, vermilion torii bands, gold accents | M PLUS Rounded 1c |
+| [Aizome](themes/aizome.css) | Indigo dyeing, **dark**, seigaiha wave pattern | Zen Kaku Gothic New |
 
 ---
 
@@ -137,8 +137,10 @@ plugins/mal-list-theming/
 └─ skills/mal-list-theming/
    ├─ SKILL.md                            workflow and hard rules for Claude
    ├─ references/                         selector map, pitfalls, verification guide
-   └─ themes/                             the four themes
-tools/                                    optional helpers, not part of the plugin: lint_css.py, browser_check.js
+   └─ themes/                             the four themes as Markdown (generated, do not edit)
+themes/                                   the four themes as .css files (source of truth)
+tools/                                    optional helpers, not part of the plugin: lint_css.py, browser_check.js,
+                                          build_plugin_themes.py (copies themes/*.css into the plugin as Markdown)
 tests/                                    linter self-tests: python tests/run_tests.py
 ```
 

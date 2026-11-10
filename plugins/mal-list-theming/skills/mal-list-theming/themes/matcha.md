@@ -1,0 +1,337 @@
+# Matcha theme
+
+Generated from `themes/matcha.css` in the repository; edit that file, not this one.
+
+The theme is the content of the code block below, exactly as written. Copy it
+into a new `.css` file before changing it.
+
+```css
+/* ==========================================================================
+   MyAnimeList list theme: "Matcha" (green tea)
+   Green tea and washi paper: cream rows, deep tea-green bands, Zen Maru Gothic.
+
+   How to use: myanimelist.net/ownlist/style > Modern > click your theme >
+   "Add Custom CSS": paste the whole file, Preview, Save.
+   Change the values in :root only; every rule below reads them.
+   ========================================================================== */
+
+/* @import must be the very first rule, or the browser ignores it. */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+
+:root {
+    --mal-font: 'Zen Maru Gothic', 'Segoe UI', Roboto, Verdana, Arial, sans-serif;
+
+    --mal-page-top: #f6f3e7;
+    --mal-page-bottom: #ebe5cf;
+    --mal-text: #2f3a24;
+    --mal-surface: #fbfaf3;
+    --mal-surface-alt: #eef0dc;
+    --mal-hover: #dde5c0;
+    --mal-border: #b9c48e;
+    --mal-rule: #dfe3c4;
+
+    --mal-band-1: #52722a;
+    --mal-band-2: #3f5a24;
+    --mal-band-3: #2a3d18;
+    --mal-on-band: #ffffff;
+    --mal-on-band-soft: #f6f8ec;
+
+    --mal-accent: #4f6f22;
+    --mal-link: #3f5a24;
+    --mal-link-hover: #44621f;
+    --mal-strong: #2a3d18;
+    --mal-muted: #5f6d45;
+}
+
+/* --- Font ---------------------------------------------------------------
+   NEVER `* { font-family: ... !important }`: MAL's icons are Font Awesome
+   glyphs and would turn into empty squares. Set the font on body (inherited
+   by normal text) and on every selector MAL pins to Verdana/Avenir. */
+body,
+#advanced-options,
+#advanced-options .sort-widget .widget-header,
+#advanced-options .filter-widget .widget-header,
+#footer-block,
+.list-menu-float .icon-menu .text,
+.cover-block .image-container .btn-list-setting,
+.status-menu-container .status-menu .status-button,
+.list-unit .list-status-title .text,
+.list-table .list-table-data .tags .edit {
+    font-family: var(--mal-font) !important;
+}
+
+/* --- Page ---------------------------------------------------------------- */
+body {
+    background: linear-gradient(180deg, var(--mal-page-top) 0%, var(--mal-page-bottom) 100%) !important;
+    color: var(--mal-text) !important;
+}
+
+/* Site header band. The logo and "Viewing ... List" are white with no
+   background of their own: on a light page they need a dark band.
+   Style .header, never the background of the logo (.header .header-title):
+   that would delete the logo image. */
+.header {
+    background: linear-gradient(90deg, var(--mal-band-1), var(--mal-band-2)) !important;
+}
+
+/* The logo sits flush with the edge: give it room now that the band shows. */
+.header .header-title {
+    left: 16px !important;
+}
+
+.header .header-menu {
+    right: 16px !important;
+}
+
+/* --- Containers ---------------------------------------------------------- */
+.list-container,
+.status-menu-container,
+.list-menu-float,
+.list-menu-float .icon-menu {
+    background-color: var(--mal-surface) !important;
+    border-color: var(--mal-border) !important;
+}
+
+/* --- Status tabs (All Anime / Watching / ...) and search ----------------- */
+.status-menu-container .status-menu .status-button,
+.status-menu-container .search-container #search-button {
+    color: var(--mal-muted) !important;
+}
+
+.status-menu-container .status-menu .status-button:hover,
+.status-menu-container .search-container #search-button:hover {
+    color: var(--mal-link) !important;
+}
+
+.status-menu-container .status-menu .status-button.on {
+    color: var(--mal-accent) !important;
+    font-weight: bold !important;
+}
+
+.status-menu-container .status-menu .status-button:after {
+    background-color: var(--mal-accent) !important;
+}
+
+.status-menu-container .search-container #search-box input {
+    background-color: var(--mal-surface) !important;
+    color: var(--mal-text) !important;
+    border: 1px solid var(--mal-border) !important;
+}
+
+/* --- Section title bar ("ALL ANIME", with Stats/Filters) -----------------
+   Vertical gradient: its bottom color equals the solid column-header color
+   right below, so the two bands blend into one. */
+.list-unit .list-status-title {
+    background: linear-gradient(180deg, var(--mal-band-1), var(--mal-band-2)) !important;
+    border-color: var(--mal-band-2) !important;
+}
+
+.list-unit .list-status-title .text {
+    color: var(--mal-on-band) !important;
+}
+
+.list-unit .list-status-title .stats a {
+    color: var(--mal-on-band-soft) !important;
+}
+
+.list-unit .list-stats {
+    background-color: var(--mal-surface-alt) !important;
+    color: var(--mal-link) !important;
+}
+
+/* --- Column headers ------------------------------------------------------
+   .header-title is applied to EACH cell: a gradient here would be redrawn
+   per cell (patchy). Solid color only. Non-sortable headers (#, Premiered,
+   Tags, Studios, Licensors) are plain text, not links: color the cell too. */
+.list-table .list-table-header .header-title {
+    background-color: var(--mal-band-2) !important;
+    background-image: none !important;
+    border-bottom-color: var(--mal-band-3) !important;
+    color: var(--mal-on-band) !important;
+}
+
+.list-table .list-table-header .header-title .link,
+.list-table .list-table-header .header-title .link.sort,
+.list-table .list-table-header .header-title .sort-icon {
+    color: var(--mal-on-band) !important;
+}
+
+.list-table .list-table-header .header-title .link.sort:hover {
+    color: var(--mal-on-band-soft) !important;
+}
+
+/* --- Rows ------------------------------------------------------------------
+   Always exclude .status: that thin first column carries the status color
+   (green = watching, blue = completed, ...). */
+.list-table .list-table-data .data:not(.status) {
+    border-bottom-color: var(--mal-rule) !important;
+}
+
+.list-table .list-table-data:nth-child(odd) .data:not(.status) {
+    background-color: var(--mal-surface) !important;
+}
+
+.list-table .list-table-data:nth-child(even) .data:not(.status) {
+    background-color: var(--mal-surface-alt) !important;
+}
+
+.list-table .list-table-data:hover .data:not(.status) {
+    background-color: var(--mal-hover) !important;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.list-table .list-table-data .data a,
+.list-table .list-table-data .data.title .add-edit-more,
+.icon-add-episode {
+    color: var(--mal-link) !important;
+}
+
+.list-table .list-table-data a:not(.edit-disabled):hover {
+    color: var(--mal-link-hover) !important;
+}
+
+.list-table .list-table-data .data.title .content-status,
+.list-table .list-table-data .data.title .rewatching,
+.list-table .list-table-data .tags .edit {
+    color: var(--mal-muted) !important;
+}
+
+.list-table .list-table-data .data.title .link {
+    font-weight: 700 !important;
+}
+
+.list-table .list-table-data .data.score .link {
+    color: var(--mal-strong) !important;
+}
+
+.list-table .list-table-data .data.image .image {
+    border-color: var(--mal-border) !important;
+    border-radius: 6px !important;
+}
+
+/* Expandable "More" panel under a row */
+.list-table .more-info {
+    border-bottom-color: var(--mal-rule) !important;
+}
+
+.list-table .more-info .more-content a {
+    color: var(--mal-link) !important;
+}
+
+.list-table .more-info .more-content a:hover {
+    color: var(--mal-link-hover) !important;
+}
+
+/* --- Filters / sort panel ------------------------------------------------ */
+#advanced-options {
+    background-color: var(--mal-surface-alt) !important;
+    border-color: var(--mal-border) !important;
+    color: var(--mal-strong) !important;
+}
+
+#advanced-options .advanced-options-header,
+#advanced-options .advanced-options-button {
+    border-color: var(--mal-border) !important;
+}
+
+#advanced-options select,
+#advanced-options input[type=text] {
+    background-color: var(--mal-surface) !important;
+    color: var(--mal-text) !important;
+    border-color: var(--mal-border) !important;
+}
+
+#advanced-options .sort-widget input[type=radio]:checked + label,
+#advanced-options .btn-apply,
+#advanced-options .btn-clear {
+    background-color: var(--mal-band-1) !important;
+    color: var(--mal-on-band) !important;
+}
+
+#advanced-options .btn-apply:hover,
+#advanced-options .btn-clear:hover {
+    background-color: var(--mal-band-2) !important;
+}
+
+/* --- Floating side menu + tooltips ---------------------------------------- */
+.list-menu-float .icon-menu svg.icon {
+    fill: var(--mal-muted) !important;
+}
+
+.list-menu-float .icon-menu:hover svg.icon {
+    fill: var(--mal-on-band) !important;
+}
+
+.list-menu-float .icon-menu:not(.profile):hover {
+    background-color: var(--mal-band-2) !important;
+}
+
+.list-menu-float .icon-menu .text {
+    color: var(--mal-on-band) !important;
+}
+
+/* --- Footer -------------------------------------------------------------- */
+#footer-block {
+    background-color: var(--mal-band-2) !important;
+}
+
+/* --- Scrollbar (Chromium/Safari + Firefox) ------------------------------- */
+html {
+    scrollbar-color: var(--mal-band-1) var(--mal-surface-alt);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--mal-surface-alt);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--mal-band-1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--mal-band-2);
+}
+
+/* --- Japanese touches ---------------------------------------------------- */
+/* Washi paper: two faint fibre gradients over the page color. */
+body {
+    background:
+        repeating-linear-gradient(115deg, rgba(120, 110, 70, 0.035) 0 2px, transparent 2px 9px),
+        repeating-linear-gradient(25deg, rgba(120, 110, 70, 0.03) 0 1px, transparent 1px 13px),
+        linear-gradient(180deg, var(--mal-page-top), var(--mal-page-bottom)) !important;
+}
+
+/* Small kanji mark after the section title ("ALL ANIME" followed by the kanji for matcha). It is plain
+   text in the theme font, not an icon, so changing its font is safe. */
+.list-unit .list-status-title .text::after {
+    content: "\003000\0062B9\008336";
+    font-size: 0.6em;
+    opacity: 0.7;
+}
+
+.list-container {
+    border-radius: 0 0 10px 10px !important;
+}
+
+/* --- Credit (visible) -----------------------------------------------------
+   A plain line of text under MAL's copyright. CSS cannot make it a link.
+   Keep it unless you really want it gone: it helps others find the kit. */
+#footer-block::after {
+    content: "Theme made with the mal-list-theming Claude skill \0000B7  github.com/dpassa/mal-list-theme-kit";
+    display: block;
+    padding-top: 6px;
+    font-size: 11px;
+    color: var(--mal-on-band-soft);
+    text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Made with the "mal-list-theming" Claude skill
+   https://github.com/dpassa/mal-list-theme-kit
+   -------------------------------------------------------------------------- */
+```

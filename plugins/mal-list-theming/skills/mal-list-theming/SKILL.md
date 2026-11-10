@@ -19,12 +19,12 @@ when you have a browser tool, by looking at the live page.
 
 ## Files
 
-- `themes/*.css`: four working themes. **Always start from one of them**: they
+- `themes/*.md`: four working themes, each one a CSS code block. **Always start from one of them**: they
   already handle every pitfall. Change the `:root` tokens first, structure second.
-  - `sakura.css`: light pink (cherry blossom), Nunito
-  - `matcha.css`: light green with a washi texture, Zen Maru Gothic
-  - `momiji.css`: warm autumn with vermilion and gold, M PLUS Rounded 1c
-  - `aizome.css`: **dark** indigo with seigaiha waves, Zen Kaku Gothic New (use it as the base for any dark theme)
+  - `sakura.md`: light pink (cherry blossom), Nunito
+  - `matcha.md`: light green with a washi texture, Zen Maru Gothic
+  - `momiji.md`: warm autumn with vermilion and gold, M PLUS Rounded 1c
+  - `aizome.md`: **dark** indigo with seigaiha waves, Zen Kaku Gothic New (use it as the base for any dark theme)
 - `references/selectors.md`: the MAL markup: which selector styles what.
 - `references/pitfalls.md`: known traps with wrong and right code (rule ids `MAL-0xx`).
 - `references/verification.md`: the review checklist, the in-page check, and what stays manual.
@@ -35,13 +35,14 @@ when you have a browser tool, by looking at the live page.
    (Google Fonts are fine: `@import` works in MAL's field), anime or manga list, and
    the list URL if they want a live preview. Never ask for their MAL login details and
    never sign in for them.
-2. **Pick the closest theme** from `themes/` and copy it to a new file named after the theme.
+2. **Pick the closest theme** from `themes/` and copy its CSS code block, exactly, into a new
+   `.css` file named after the new theme.
 3. **Edit tokens** in `:root` (`--mal-font`, surfaces, bands, link and muted colors).
    Keep the token contract:
    - `--mal-on-band` must contrast with `--mal-band-1` and `--mal-band-2` (≥ 4.5:1).
    - `--mal-text`, `--mal-link`, `--mal-muted` and `--mal-accent` must contrast with
      `--mal-surface`, `--mal-surface-alt` and `--mal-hover` (≥ 4.5:1).
-   - For a dark theme also override the base's hardcoded light colors. The extra block in `aizome.css` shows which.
+   - For a dark theme also override the base's hardcoded light colors. The extra block in `aizome.md` shows which.
 4. **Add decoration** only after the tokens work: patterns made with gradients, a
    `::after` text mark, radii, shadows. Follow the hard rules below.
 5. **Review** the whole file against the checklist in `references/verification.md`

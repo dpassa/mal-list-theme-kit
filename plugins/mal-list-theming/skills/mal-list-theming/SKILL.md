@@ -93,7 +93,7 @@ when you have a browser tool, by looking at the live page.
    in `references/selectors.md` (body alone does not reach them).
 2. `.header-title` means two things: the **logo** (`.header .header-title`) and **every
    column-header cell** (`.list-table .list-table-header .header-title`). Always scope it.
-   Never set `background`/`background-image` on the logo; color `.header` instead.
+   Never give the logo a `background` or `background-image`; color `.header` instead.
 3. No gradients on column-header cells: they are redrawn per cell. Use a solid color.
 4. Row backgrounds go on `.data:not(.status)`: the status column carries the status colors.
 5. Use `!important` on overrides: MAL inlines the custom CSS *before* its site
@@ -102,7 +102,7 @@ when you have a browser tool, by looking at the live page.
 7. Only selectors of the **modern** list: `table.list-table thead`, `tr.table-header`,
    `td.header_title`, `.borderClass`, `.td1` belong to the classic list and match nothing.
 8. Non-sortable column headers (#, Premiered, Tags, Studios, Licensors) are plain text,
-   not `.link`: set `color` on the `.header-title` cell itself.
+   not `.link`: put `color` on the `.header-title` cell itself.
 9. Don't copy MAL's own stylesheet into a theme you share: override only.
 10. **ASCII only.** MAL's Custom CSS field corrupts any non-ASCII character when it saves
     (`·` becomes `Â·`, kanji become garbage). In `content` strings write CSS escapes

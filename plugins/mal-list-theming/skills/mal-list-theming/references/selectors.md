@@ -11,11 +11,11 @@ body.ownlist.anime                       (manga list: body.ownlist.manga)
 │  ├─ a.header-title                     the LOGO (background-image, text-indent:-9999px)
 │  └─ .header-menu > .btn-menu           "Viewing Your Anime List" (.username = "Your" or the name)
 ├─ .list-menu-float                      fixed left icon menu
-│  └─ .icon-menu.(profile|quick-add|anime-list|manga-list|statistics|history|export|setting|logout)
+│  └─ .icon-menu.<item>                  one per menu item (see the item list below)
 │     ├─ svg.icon                        SVG icon: style with `fill`
 │     └─ .text                           tooltip label, shown on :hover (width 0 → 94px)
 ├─ .list-container
-│  ├─ .cover-block .image-container      the person's cover image (set in MAL settings, not CSS)
+│  ├─ .cover-block .image-container      the person's cover image (chosen in MAL settings, not CSS)
 │  │  └─ .btn-list-setting               "camera" button on hover (contains i.fa-camera)
 │  ├─ .status-menu-container             tabs bar (becomes .fixed when scrolling)
 │  │  ├─ .status-menu .status-button(.on)  All Anime / Currently Watching / ...  (:after = underline)
@@ -30,7 +30,7 @@ body.ownlist.anime                       (manga list: body.ownlist.manga)
 │        │     sortable:   a.link.sort (+ i.fa-arrow-down-short-wide / -wide-short on the sorted column)
 │        │     plain text: #, Premiered, Tags, Studios, Licensors (no link)
 │        ├─ tr.list-table-data > td.data.<column>
-│        │     .data.status.(watching|completed|onhold|dropped|plantowatch|reading|plantoread)  4px color bar
+│        │     .data.status.<status>     4px color bar (see the status list below)
 │        │     .data.number  .data.image .image  .data.title .link  .add-edit-more  .content-status
 │        │     .data.score .link (.score-label.score-N)  .data.type  .data.progress  .data.tags .edit
 │        └─ tr.more-info .more-content   expandable "More" panel
@@ -38,10 +38,17 @@ body.ownlist.anime                       (manga list: body.ownlist.manga)
 └─ #footer-block  #copyright  #recaptcha-terms
 ```
 
-Column classes seen on `th.header-title` / `td.data`: `status number image title score
-type progress started finished tags studio licensor mal_score airing-started
-airing-finished`, and on manga lists: `chapters volumes`. Others (`days priority rated
-retail storage`) appear when the person enables those columns.
+Floating menu items (class next to `.icon-menu`): profile, quick-add, anime-list,
+manga-list, statistics, history, the list download item, the settings item, logout.
+Read the exact class of the last three on the live page before styling them one by one.
+
+Status classes (next to `.data.status`): watching, completed, onhold, dropped,
+plantowatch, and on manga lists reading and plantoread.
+
+Column classes (next to `th.header-title` and `td.data`): status, number, image,
+title, score, type, progress, started, finished, tags, studio, licensor, mal_score,
+airing-started and airing-finished. Manga lists add chapters and volumes. Others
+(days, priority, rated, retail, storage) appear when the person enables those columns.
 
 ## Selectors MAL pins to Verdana/Avenir
 

@@ -1,0 +1,11 @@
+/* Every rule in this file is a known MAL pitfall: the linter must flag it. */
+body { background: pink; }
+* { font-family: 'Nunito', sans-serif !important; }
+.list-table-header .header-title { background: linear-gradient(90deg, #c2185b, #8b3a4a) !important; }
+.header-title { color: white !important; }
+.header .header-title { background: #c2185b !important; }
+table.list-table thead th { color: red; }
+.list-table .list-table-data .data { background-color: #fff5f8 !important; }
+i.fa-solid { font-family: Nunito !important; }
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+.list-table .list-table-data .data a { color: #8b3a4a; }

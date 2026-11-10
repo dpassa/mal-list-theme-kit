@@ -1,0 +1,10 @@
+# Local working files, not part of the public kit:
+# MAL's own list stylesheet (MAL's code, not ours to redistribute)
+MyAnimeListOriginal.css
+# the author's personal working copy
+mal-cherry-blossom.css
+local/
+
+__pycache__/
+*.pyc
+.claude/

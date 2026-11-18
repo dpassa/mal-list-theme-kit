@@ -108,7 +108,7 @@ It catches, among other things:
 - gradients that look patchy on column headers
 - row colors that hide the status bar
 - missing `!important`
-- a misplaced `@import`
+- an `@import`, which MAL strips for visitors and which can blank the list (MAL-017)
 
 **In-page check:**
 1. Open your list and press F12 → **Console**.
@@ -126,6 +126,7 @@ for details and for what still needs human eyes.
 | Nothing changes | You are on the **Classic** template, or you saved the CSS on a theme you are not using. Check *Switch Template → Modern* and paste into the theme your list uses. |
 | Icons became squares | A rule changes the font of icons, usually `* { font-family: ... }`. Run the linter (MAL-001). |
 | The font doesn't change everywhere | The tabs, section titles and tooltips need their own font rule. See [selectors.md](plugins/mal-list-theming/skills/mal-list-theming/references/selectors.md). |
+| White list in a private window, fine when logged in | MAL gives visitors a sanitized copy of your CSS and comments out every line naming `@import`. Remove those lines, comments included, and save again (MAL-017). |
 | The logo disappeared | A `background` was set on the logo. Color `.header` instead (MAL-005). |
 
 ## Repository layout

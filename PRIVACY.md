@@ -13,9 +13,8 @@ store or send any personal data.
   you can paste into your browser console. Neither sends data anywhere.
 - **No credentials.** The skill never asks for your MyAnimeList password or signs in
   for you. You paste and save the CSS yourself in MyAnimeList's settings.
-- **Third parties.** The example themes load a font from Google Fonts with `@import`,
-  so your browser requests that font from Google when your list is shown. You can
-  remove the `@import` line to avoid this. MyAnimeList's own privacy policy applies
+- **Third parties.** The example themes load nothing from other sites: no web fonts,
+  no images. MyAnimeList's own privacy policy applies
   to your list and to the CSS you save there.
 
 Questions: open an issue at https://github.com/dpassa/mal-list-theme-kit/issues

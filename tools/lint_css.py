@@ -281,6 +281,16 @@ def lint(path: str, css: str) -> list[Finding]:
         if "http://" in stmt:
             add(ln, "MAL-012", "warning", "http:// import is blocked as mixed content on MAL (https).", stmt[:80])
 
+    # MAL-017: MAL's public copy comments out every line naming @import, even inside a comment.
+    # A comment on that line closes the wrapper early and the stray "*/" drops the next rule
+    # (usually :root), so visitors see a white list while the owner sees it fine.
+    for n, line in enumerate(css.splitlines(), 1):
+        if "@import" in line.lower():
+            add(n, "MAL-017", "error",
+                "MAL comments out this line for visitors (not for the list owner): the import never loads "
+                "for them, and a comment on the same line breaks the rule after it. Remove the line; "
+                "do not name this at-rule in comments either.", line.strip()[:80])
+
     # MAL-008: status column background
     for r in rules:
         if not any(d[0] in PROPS_BG for d in r.decls):

@@ -25,8 +25,8 @@ right code are in `pitfalls.md` under the same id.
 - [ ] MAL-008: row backgrounds target `.data:not(.status)`.
 
 **Cascade and file**
-- [ ] MAL-007: `@import` is the very first rule.
-- [ ] MAL-012: imports use `https://`.
+- [ ] MAL-017: no `@import` anywhere, not even the word in a comment (visitors get a copy where MAL comments it out).
+- [ ] MAL-012: any URL uses `https://`.
 - [ ] MAL-009: every override of a property the base sets with `!important` (see `selectors.md`) also has `!important`.
 - [ ] MAL-013: scrollbar styling has both `scrollbar-color` and `::-webkit-scrollbar`.
 - [ ] MAL-016: the file is ASCII only; `content` strings use CSS escapes, with two spaces after an escape when a space must stay.
@@ -56,7 +56,7 @@ then `(L1 + 0.05) / (L2 + 0.05)`); do not guess them by eye.
 |---|---|
 | Icons render | every visible `i[class*=fa-]` still uses the Font Awesome family and its `::before` has a glyph (not an empty square) |
 | Search works | click the lens: `#search-box` gets the `open` class and its full width (measure with transitions off); close it |
-| Font everywhere | no visible text left in Verdana, Avenir, Arial or Tahoma; the expected font is loaded (`document.fonts`) |
+| Font everywhere | no visible text left in Verdana, Avenir, Arial or Tahoma; the computed family starts with the theme's font stack |
 | Contrast | computed color and background of header, tabs (also inactive), section title, both header kinds, titles, cells, tag links and footer; for gradients check every stop |
 | Logo | `.header .header-title` still has its background image |
 | Status column | each `.data.status.*` keeps its own status color |
@@ -65,6 +65,10 @@ then `(L1 + 0.05) / (L2 + 0.05)`); do not guess them by eye.
 4. Take a screenshot and judge it: harmony, nothing overlapping the logo or cover.
 5. Remove the preview and re-enable the saved style. Nothing is sent to MAL,
    nothing is saved.
+6. After the person saves, open the list **logged out** (a private window, no
+   extensions). MAL shows the owner the CSS as saved but visitors a sanitized copy,
+   so a theme can look right to its owner and be blank for everyone else (MAL-017).
+   The page source holds the visitors' copy in `<style id="custom-css">`.
 
 Tips:
 - Screenshots may time out while the tab is in the background: rely on computed styles.

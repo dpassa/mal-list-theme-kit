@@ -25,8 +25,8 @@ for path in themes:
     findings = lint_css.lint(path, css)
     bad = [f for f in findings if f.severity in ("error", "warning")]
     check(not bad, f"{os.path.basename(path)} lints clean" + (f": {[(f.rule, f.line) for f in bad]}" if bad else ""))
-    check("@import" in css and css.index("@import") < css.index(":root {"),
-          f"{os.path.basename(path)} has @import before :root")
+    check("@import" not in css.lower(),
+          f"{os.path.basename(path)} never names @import (MAL comments it out for visitors)")
     check("github.com/dpassa/mal-list-theme-kit" in css.strip().splitlines()[-2],
           f"{os.path.basename(path)} ends with the credit comment")
     check("#footer-block::after" in css and "github.com/dpassa/mal-list-theme-kit\";" in css,
@@ -62,12 +62,16 @@ for dirpath, _, files in os.walk(plugin_dir):
 with open(os.path.join(ROOT, "tests", "fixtures", "bad.css"), encoding="utf-8") as fh:
     rules = {f.rule for f in lint_css.lint("bad.css", fh.read())}
 for expected in ["MAL-001", "MAL-002", "MAL-003", "MAL-004", "MAL-005", "MAL-006",
-                 "MAL-007", "MAL-008", "MAL-009", "MAL-016"]:
+                 "MAL-007", "MAL-008", "MAL-009", "MAL-016", "MAL-017"]:
     check(expected in rules, f"bad.css triggers {expected}")
 
 # body font without the pinned selectors must warn (the bug that left the tabs in Verdana)
 partial = "@import url('https://x');\nbody { font-family: X !important; }\n"
 check(any(f.rule == "MAL-010" for f in lint_css.lint("partial.css", partial)), "body-only font triggers MAL-010")
+
+# the comment-before-import pattern that blanked the live list for visitors
+blank = "/* @import must be first */\n:root { --x: red; }\n"
+check(any(f.rule == "MAL-017" for f in lint_css.lint("blank.css", blank)), "@import named in a comment triggers MAL-017")
 
 # attribute selectors with * must not be mistaken for the universal selector
 attr = "[class*=title] { font-family: X !important; }\n"

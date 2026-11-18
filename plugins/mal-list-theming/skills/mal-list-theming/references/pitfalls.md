@@ -47,6 +47,20 @@ ends on the same color as the headers.
 
 ## MAL-007: `@import` not first
 The browser ignores an `@import` that follows any rule: the font silently falls back.
+Better still, drop it: see MAL-017.
+
+## MAL-017: the list is white for visitors but fine for the owner
+**Symptom:** logged in, the owner sees the theme. In a private window, or for anyone
+else, the list is plain white with Times New Roman.
+**Cause:** MAL serves visitors a sanitized copy of the custom CSS. Every line that
+contains `@import`, comments included, is wrapped in a new comment and its URL is
+rewritten through MAL's image proxy, so the font never loads for visitors. If the line
+already held a comment, its own end marker closes the wrapper early; the leftover end
+marker becomes part of the next selector, which is then invalid, so the browser drops
+that whole rule. In the bundled themes the next rule was `:root`: no variables, no colors.
+**Fix:** no `@import` at all, and do not write the word in comments. Put the wanted font
+first in `--mal-font` with system fallbacks after it. Always look at the list logged
+out before calling a theme done.
 
 ## MAL-008: row backgrounds hide the status colors
 `.list-table-data .data { background: ... }` also paints `.data.status`, the thin bar

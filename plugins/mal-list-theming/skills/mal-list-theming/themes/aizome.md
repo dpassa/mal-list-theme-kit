@@ -15,8 +15,13 @@ into a new `.css` file before changing it.
    Change the values in :root only; every rule below reads them.
    ========================================================================== */
 
-/* @import must be the very first rule, or the browser ignores it. */
-@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap');
+/* Font: MAL serves visitors a sanitized copy of this CSS. In that copy every
+   line that loads an external stylesheet (web fonts included) is wrapped in
+   a comment, and a comment already on that line ends the wrapper early: the
+   stray end marker then kills the next rule (here :root, so every color is
+   lost and the list turns white). So this file loads no web font, and no
+   comment may even name that at-rule. The first font in --mal-font shows only
+   where it is installed; the system fallbacks after it keep the list tidy. */
 
 :root {
     --mal-font: 'Zen Kaku Gothic New', 'Segoe UI', Roboto, Verdana, Arial, sans-serif;

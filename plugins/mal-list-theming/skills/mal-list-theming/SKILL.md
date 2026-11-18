@@ -32,7 +32,8 @@ when you have a browser tool, by looking at the live page.
 ## Workflow
 
 1. **Understand the request.** Ask about the mood or palette, light or dark, the font
-   (Google Fonts are fine: `@import` works in MAL's field), anime or manga list, and
+   (pick one most visitors have, with system fallbacks: MAL does not load web fonts
+   for visitors, see rule 6), anime or manga list, and
    the list URL if they want a live preview. Never ask for their MAL login details and
    never sign in for them.
 2. **Pick the closest theme** from `themes/` and copy its CSS code block, exactly, into a new
@@ -99,7 +100,11 @@ when you have a browser tool, by looking at the live page.
 4. Row backgrounds go on `.data:not(.status)`: the status column carries the status colors.
 5. Use `!important` on overrides: MAL inlines the custom CSS *before* its site
    stylesheet, and its base CSS already uses `!important` in many places.
-6. `@import` must be the first rule of the file.
+6. **No web fonts, and never the word `@import`, not even in a comment.** MAL shows the
+   list owner the CSS as saved, but visitors get a copy where every line naming it is
+   wrapped in a comment. The font never loads for them, and a comment already on that
+   line leaves a stray end marker that drops the next rule: with `:root` gone, the list
+   is white for everyone but the owner. Review line MAL-017.
 7. Only selectors of the **modern** list: `table.list-table thead`, `tr.table-header`,
    `td.header_title`, `.borderClass`, `.td1` belong to the classic list and match nothing.
 8. Non-sortable column headers (#, Premiered, Tags, Studios, Licensors) are plain text,

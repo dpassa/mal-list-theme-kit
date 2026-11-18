@@ -280,6 +280,34 @@ body {
     background-color: var(--mal-band-2) !important;
 }
 
+/* --- Keyboard focus -------------------------------------------------------
+   MAL removes the outline from the filter inputs and the browser default
+   ring is hard to see on the tinted rows. Show a ring only for keyboard
+   focus (:focus-visible), in the accent color on the surface and in the
+   band text color on the dark bands. */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--mal-accent) !important;
+    outline-offset: 2px !important;
+}
+
+#advanced-options input:focus-visible,
+#advanced-options select:focus-visible,
+.status-menu-container .search-container #search-box input:focus-visible {
+    outline: 2px solid var(--mal-accent) !important;
+    outline-offset: 1px !important;
+}
+
+.header a:focus-visible,
+.list-unit .list-status-title a:focus-visible,
+.list-table .list-table-header .header-title a:focus-visible,
+#footer-block a:focus-visible {
+    outline-color: var(--mal-on-band) !important;
+}
+
 /* --- Scrollbar (Chromium/Safari + Firefox) ------------------------------- */
 html {
     scrollbar-color: var(--mal-band-1) var(--mal-surface-alt);
